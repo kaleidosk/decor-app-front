@@ -33,7 +33,7 @@ function CreateProjectPage() {
       });
 
      
-      const response = await axios.post('http://localhost:5005/api/projects', formDataWithImage);
+      const response = await axios.post('https://decor-app-server.onrender.com/api/projects', formDataWithImage);
       console.log('Project created successfully:', response.data);
      
     } catch (error) {
