@@ -15,4 +15,4 @@ root.render(
       </AuthProviderWrapper>
     </Router>
   </React.StrictMode>
-);
+)

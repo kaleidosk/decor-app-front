@@ -1,67 +1,75 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../context/auth.context';
 
-function CreateProjectPage() {
-  const { userId } = useContext(AuthContext);
-  const [formData, setFormData] = useState({
-    userId: userId,
-    picture: null, 
-    description: '',
-    projectStatus: 'pending',
-    quotations: []
-  });
+const API_URL = import.meta.env.VITE_SERVER_URL;
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    
-    const file = files ? files[0] : null;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: file ? file : value 
-    }));
+const CreateProjectPage = () => {
+  const [description, setDescription] = useState('');
+  const [imageFile, setImageFile] = useState(null);
+  const [imageUrl, setImageUrl] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0]);
+    setImageUrl(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const formDataWithImage = new FormData(); 
-      
-      Object.keys(formData).forEach(key => {
-        formDataWithImage.append(key, formData[key]);
+      const formData = new FormData();
+      formData.append('description', description);
+      formData.append('picture', imageFile);
+
+      const response = await axios.post(`${API_URL}/api/projects`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
 
-     
-      const response = await axios.post('https://decor-app-server.onrender.com/api/projects', formDataWithImage);
-      console.log('Project created successfully:', response.data);
-     
+      console.log('Project created:', response.data);
     } catch (error) {
       console.error('Error creating project:', error);
+      setErrorMessage('Error creating project. Please try again.');
     }
   };
 
   return (
     <div>
-      <h2>Create a new project</h2>
+      <h1>Create New Project</h1>
+      {errorMessage && <p>{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
-        <label>
-          Picture:
-          <input type="file" name="picture" onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Description:
-          <input type="text" name="description" value={formData.description} onChange={handleChange} />
-        </label>
-        <br />
+        <div>
+          <label htmlFor="description">Description:</label>
+          <input
+            type="text"
+            id="description"
+            value={description}
+            onChange={handleDescriptionChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="picture">Picture:</label>
+          <input
+            type="file"
+            name="picture"
+            accept="image/*"
+            onChange={handleImageChange}
+            required
+          />
+          {imageUrl && <img src={imageUrl} alt="Project" />}
+        </div>
         <button type="submit">Create Project</button>
       </form>
     </div>
   );
-}
+};
 
 export default CreateProjectPage;
-
-
 

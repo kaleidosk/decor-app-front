@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import './ProfilePage.css'
 
-const API_URL = 'https://decor-app-server.onrender.com';
+const API_URL = import.meta.env.VITE_SERVER_URL
 
 function ProfilePage() {
   const [user, setUser] = useState(null);

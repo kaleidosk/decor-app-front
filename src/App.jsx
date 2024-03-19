@@ -7,7 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate"
 import ProfilePage from "./pages/ProfilePage";
-import EditProfilePage from "./pages/EditProfilePage";
+import EditProfilePage from "./pages/EditProfilePage"
 import CreateProjectPage from "./pages/CreateProjectPage"
 import {Cloudinary} from "@cloudinary/url-gen";
 import {fill} from "@cloudinary/url-gen/actions/resize";
@@ -34,7 +34,7 @@ function App() {
           <Route path="/signup" element={<IsAnon><SignupPage /></IsAnon>} />
           <Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />
           <Route path="/user/:userId" element={<IsPrivate> <ProfilePage /> </IsPrivate>} /> 
-          <Route path="/edit-profile/:userId" element={<EditProfilePage />} />
+          <Route path="/user/edit/:userId" element={<IsPrivate> <EditProfilePage/> </IsPrivate>} /> 
           <Route path="/create-project" element={<CreateProjectPage/>} />
         </Routes>
 

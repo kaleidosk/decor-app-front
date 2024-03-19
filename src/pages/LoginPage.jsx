@@ -3,7 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
-const API_URL = "https://decor-app-server.onrender.com";
+const API_URL = import.meta.env.VITE_SERVER_URL
+console.log (API_URL)
 
 function LoginPage() {
   const [email, setEmail] = useState("");

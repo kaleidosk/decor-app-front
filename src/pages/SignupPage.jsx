@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
  
-const API_URL = "https://decor-app-server.onrender.com";
+const API_URL = import.meta.env.VITE_SERVER_URL
  
 function SignupPage(props) {
   const [email, setEmail] = useState("");
