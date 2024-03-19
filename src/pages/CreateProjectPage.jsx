@@ -1,75 +1,74 @@
-import { useState, useEffect } from 'react';
+
+import { useState } from 'react';
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_SERVER_URL;
+const API_URL = import.meta.env.VITE_SERVER_URL
 
 const CreateProjectPage = () => {
   const [description, setDescription] = useState('');
-  const [imageFile, setImageFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState('');
+  const [picture, setPicture] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
   };
 
-  const handleImageChange = (e) => {
-    setImageFile(e.target.files[0]);
-    setImageUrl(URL.createObjectURL(e.target.files[0]));
+  const handlePictureChange = (event) => {
+    setPicture(event.target.files[0]);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    try {
-      const formData = new FormData();
-      formData.append('description', description);
-      formData.append('picture', imageFile);
+    //Formdata to send the info from the 
+    const formData = new FormData();
+    formData.append('description', description);
+    formData.append('picture', picture);
 
-      const response = await axios.post(`${API_URL}/api/projects`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+    // Getting the token
+    const authToken = localStorage.getItem('authToken');
 
-      console.log('Project created:', response.data);
-    } catch (error) {
-      console.error('Error creating project:', error);
-      setErrorMessage('Error creating project. Please try again.');
-    }
+    // Sending the request with the token
+    axios.post(`${API_URL}/api/projects`, formData, {
+      headers: {
+        'Authorization': `Bearer ${authToken}`
+      }
+    })
+    .then(response => {
+   
+      console.log(response.data);
+    })
+    .catch(error => {
+      
+      console.error(error);
+      setErrorMessage('Error while creating a new project');
+    });
   };
 
   return (
     <div>
-      <h1>Create New Project</h1>
-      {errorMessage && <p>{errorMessage}</p>}
+      <h2>Create Project</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="description">Description:</label>
+          <label>Description:</label>
           <input
             type="text"
-            id="description"
             value={description}
             onChange={handleDescriptionChange}
-            required
           />
         </div>
         <div>
-          <label htmlFor="picture">Picture:</label>
+          <label>Picture:</label>
           <input
             type="file"
-            name="picture"
-            accept="image/*"
-            onChange={handleImageChange}
-            required
+            onChange={handlePictureChange}
           />
-          {imageUrl && <img src={imageUrl} alt="Project" />}
         </div>
         <button type="submit">Create Project</button>
       </form>
+      {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 };
 
 export default CreateProjectPage;
-
