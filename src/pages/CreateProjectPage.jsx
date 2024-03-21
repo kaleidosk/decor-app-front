@@ -1,16 +1,23 @@
 
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Importa la función navigate
 
-const API_URL = import.meta.env.VITE_SERVER_URL
+const API_URL = import.meta.env.VITE_SERVER_URL;
 
 const CreateProjectPage = () => {
+  const [title, setTitle]=useState ('')
   const [description, setDescription] = useState('');
   const [picture, setPicture] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); // Obtén la función navigate
 
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
+  };
+
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
   };
 
   const handlePictureChange = (event) => {
@@ -20,26 +27,29 @@ const CreateProjectPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    //Formdata to send the info from the 
+    // FormData para enviar los datos del formulario y la imagen
     const formData = new FormData();
     formData.append('description', description);
+    formData.append('title', title);
     formData.append('picture', picture);
 
-    // Getting the token
+    // Obtener el token del almacenamiento local
     const authToken = localStorage.getItem('authToken');
 
-    // Sending the request with the token
+    // Enviar la solicitud con el token
     axios.post(`${API_URL}/api/projects`, formData, {
       headers: {
         'Authorization': `Bearer ${authToken}`
       }
     })
     .then(response => {
-   
+      // Manejar la respuesta del servidor
       console.log(response.data);
+      // Redirigir al usuario a su ProfilePage
+      navigate(`/user/${response.data.userId}`); // Redirige a la ruta '/profile'
     })
     .catch(error => {
-      
+      // Manejar errores de la solicitud
       console.error(error);
       setErrorMessage('Error while creating a new project');
     });
@@ -55,6 +65,14 @@ const CreateProjectPage = () => {
             type="text"
             value={description}
             onChange={handleDescriptionChange}
+          />
+        </div>
+        <div>
+          <label>Title:</label>
+          <input
+            type="text"
+            value={title}
+            onChange={handleTitleChange}
           />
         </div>
         <div>
