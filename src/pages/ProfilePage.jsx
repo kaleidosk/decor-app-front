@@ -1,4 +1,3 @@
-
 // import { useState, useEffect } from 'react';
 // import { useParams, Link } from 'react-router-dom';
 // import axios from 'axios';
@@ -29,10 +28,20 @@
 //     }
 //   }, [userId]); // Se ejecuta cada vez que userId cambia
 
-
 //   const handleDeleteProject = (projectId) => {
-//     // Lógica para eliminar el proyecto con el ID projectId
-//     console.log("Deleting project with ID:", projectId);
+//     const storedToken = localStorage.getItem('authToken');
+    
+//     axios
+//       .delete(`${API_URL}/api/projects/${projectId}`, {
+//         headers: { Authorization: `Bearer ${storedToken}` }
+//       })
+//       .then(() => {
+//         // Eliminar el proyecto localmente del estado
+//         setProjects(prevProjects => prevProjects.filter(project => project._id !== projectId));
+//       })
+//       .catch((error) => {
+//         console.error("Error deleting project:", error);
+//       });
 //   };
 
 //   const handleDeleteProfile = () => {
@@ -60,11 +69,10 @@
 //                 <p>Title: {project.title}</p>
 //                 <p>Status: {project.projectStatus}</p>
 //                 <Link to={`/edit-project/${project._id}`}>
-//               <button>Edit Project</button>
-//             </Link>
-//             <button onClick={() => handleDeleteProject(project._id)}>Delete Project</button>
-//           </div>
-           
+//                   <button>Edit Project</button>
+//                 </Link>
+//                 <button onClick={() => handleDeleteProject(project._id)}>Delete Project</button>
+//               </div>
 //             ))}
 //           </div>
 //           <div className="dropdown">
@@ -177,3 +185,4 @@ function ProfilePage() {
 }
 
 export default ProfilePage;
+

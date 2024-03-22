@@ -63,6 +63,7 @@ const CreateProjectPage = () => {
           <label>Description:</label>
           <input
             type="text"
+            name="description"
             value={description}
             onChange={handleDescriptionChange}
           />
@@ -71,6 +72,7 @@ const CreateProjectPage = () => {
           <label>Title:</label>
           <input
             type="text"
+            name="title"
             value={title}
             onChange={handleTitleChange}
           />

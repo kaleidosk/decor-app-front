@@ -55,7 +55,8 @@ import IsPrivate from "./components/IsPrivate"
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage"
 import CreateProjectPage from "./pages/CreateProjectPage"
-import EditProjectPage from "./pages/EditProjectPage"; 
+import EditProjectPage from "./pages/EditProjectPage";
+import ProjectDetailPage from "./pages/ProjectDetailPage";
 
 function App() {
   return (
@@ -69,6 +70,7 @@ function App() {
         <Route path="/user/edit/:userId" element={<IsPrivate><EditProfilePage /></IsPrivate>} />
         <Route path="/create-project" element={<CreateProjectPage />} />
         <Route path="/edit-project/:projectId" element={<EditProjectPage />} /> {/* Nueva ruta para EditProjectPage */}
+        <Route path= "/projects/:projectId" element={<ProjectDetailPage/>} />
       </Routes>
     </div>
   );
