@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Importa la función navigate
+import { useNavigate } from 'react-router-dom'; 
 
 const API_URL = import.meta.env.VITE_SERVER_URL;
 
@@ -10,7 +10,7 @@ const CreateProjectPage = () => {
   const [description, setDescription] = useState('');
   const [picture, setPicture] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate(); // Obtén la función navigate
+  const navigate = useNavigate(); 
 
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
@@ -43,13 +43,13 @@ const CreateProjectPage = () => {
       }
     })
     .then(response => {
-      // Manejar la respuesta del servidor
+      
       console.log(response.data);
-      // Redirigir al usuario a su ProfilePage
+      
       navigate(`/user/${response.data.userId}`); // Redirige a la ruta '/profile'
     })
     .catch(error => {
-      // Manejar errores de la solicitud
+ 
       console.error(error);
       setErrorMessage('Error while creating a new project');
     });

@@ -10,7 +10,7 @@ function ProjectDetailPage() {
   const [project, setProject] = useState(null);
   const { projectId } = useParams();
   const { isLoggedIn, user } = useContext(AuthContext);
-  const [isProfessional, setIsProfessional] = useState(false); // Agregar estado para isProfessional
+  const [isProfessional, setIsProfessional] = useState(false); 
 
   useEffect(() => {
     axios.get(`${API_URL}/api/projects/${projectId}`)
@@ -23,7 +23,7 @@ function ProjectDetailPage() {
   }, [projectId]);
 
   useEffect(() => {
-    // Verificar si el usuario está logueado y es un profesional
+  
     if (isLoggedIn && user && user.isaprofessional) {
       setIsProfessional(true);
     } else {
@@ -41,10 +41,11 @@ function ProjectDetailPage() {
         </div>
       )}
 
-      {/* Renderizar el botón solo si isLoggedIn es true */}
+
       {isLoggedIn && (
         <div>
           <button onClick={() => console.log('Sending quotation')}>Send a quotation</button>
+          
         </div>
       )}
     </div>

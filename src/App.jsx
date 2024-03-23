@@ -57,6 +57,7 @@ import EditProfilePage from "./pages/EditProfilePage"
 import CreateProjectPage from "./pages/CreateProjectPage"
 import EditProjectPage from "./pages/EditProjectPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
+import CreateQuotationPage from "./pages/CreateQuotationPage";
 
 function App() {
   return (
@@ -69,8 +70,9 @@ function App() {
         <Route path="/user/:userId" element={<IsPrivate><ProfilePage /></IsPrivate>} />
         <Route path="/user/edit/:userId" element={<IsPrivate><EditProfilePage /></IsPrivate>} />
         <Route path="/create-project" element={<CreateProjectPage />} />
-        <Route path="/edit-project/:projectId" element={<EditProjectPage />} /> {/* Nueva ruta para EditProjectPage */}
+        <Route path="/edit-project/:projectId" element={<EditProjectPage />} /> 
         <Route path= "/projects/:projectId" element={<ProjectDetailPage/>} />
+        <Route path="/projects/:projectId/create-quotation" element={<CreateQuotationPage />} /> 
       </Routes>
     </div>
   );
