@@ -27,16 +27,16 @@ const CreateProjectPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // FormData para enviar los datos del formulario y la imagen
+
     const formData = new FormData();
     formData.append('description', description);
     formData.append('title', title);
     formData.append('picture', picture);
 
-    // Obtener el token del almacenamiento local
+    // Get the token
     const authToken = localStorage.getItem('authToken');
 
-    // Enviar la solicitud con el token
+    // Send the request with the token
     axios.post(`${API_URL}/api/projects`, formData, {
       headers: {
         'Authorization': `Bearer ${authToken}`

@@ -1,0 +1,14 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.project-item {
+  margin-bottom: 20px;
+}
+
+.project-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px; 
+}

@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
 
 const API_URL = import.meta.env.VITE_SERVER_URL;
@@ -29,7 +29,7 @@ function ProjectDetailPage() {
     } else {
       setIsProfessional(false);
     }
-  }, [isLoggedIn, user]);
+  }, [isLoggedIn, user, projectId]);
 
   return (
     <div>
@@ -44,8 +44,10 @@ function ProjectDetailPage() {
 
       {isLoggedIn && (
         <div>
-          <button onClick={() => console.log('Sending quotation')}>Send a quotation</button>
-          
+        <Link to={`/projects/${projectId}/create-quotation`}> 
+          <button onClick={() => console.log('projectId', projectId)}>Send a quotation</button>
+
+          </Link>
         </div>
       )}
     </div>

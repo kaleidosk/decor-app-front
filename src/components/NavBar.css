@@ -1,0 +1,58 @@
+
+.navbar {
+    font-family: 'Roboto', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 10px; /* Ajusta según tus necesidades */
+    width: calc(100% - 20px); /* Resta 20px para compensar el margen izquierdo */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px; /* Ajusta según tus necesidades */
+  }
+  
+  #custom-navbar img {
+    height: 40px;
+    width: auto;
+  }
+  
+  .nav-links {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  /* Espacio entre el último botón y el borde derecho */
+  .nav-links .nav-link:last-child {
+    margin-right: 20px;
+  }
+  
+  /* Ajuste de distancia entre Profile y Logout */
+  .nav-links .nav-link:nth-last-child(2) {
+    margin-right: 10px;
+  }
+  
+  @media (max-width: 650px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    #custom-navbar img {
+      margin-bottom: 10px;
+    }
+  
+    .nav-links {
+      margin-top: 10px;
+      justify-content: center;
+    }
+  
+    .nav-links a {
+      margin: 5px;
+    }
+  }
+  

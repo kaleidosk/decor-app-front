@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import './HomePage.css'
 
 const API_URL = import.meta.env.VITE_SERVER_URL;
 
@@ -20,7 +20,7 @@ function HomePage() {
 
   return (
     <div>
-      <h1>Home Page</h1>
+      {/* <h1>Home Page</h1> */}
       {projects.map(project => (
         <div key={project._id}>
         <Link to={`/projects/${project._id}`}>

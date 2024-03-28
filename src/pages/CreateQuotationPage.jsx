@@ -1,19 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const API_URL = import.meta.env.VITE_SERVER_URL;
 
 const CreateQuotationPage = () => {
-  const { id } = useParams(); 
-  const [professionalId, setProfessionalId] = useState('');
+  const { projectId } = useParams(); 
   const [content, setContent] = useState('');
   const [price, setPrice] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate(); 
+  const [professionalId, setProfessionalId] = useState('');
+  const navigate = useNavigate();
 
-  const handleProfessionalIdChange = (event) => {
-    setProfessionalId(event.target.value);
+  useEffect(() => {
+    const storedToken = localStorage.getItem('authToken');
+    if (storedToken) {
+      // Decodificar el token para obtener el ID del usuario
+      const decodedToken = parseJwt(storedToken);
+      if (decodedToken && decodedToken.userId) {
+        setProfessionalId(decodedToken.userId);
+      }
+    }
+  }, []);
+
+  const parseJwt = (token) => {
+    try {
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+      return null;
+    }
   };
 
   const handleContentChange = (event) => {
@@ -28,11 +43,11 @@ const CreateQuotationPage = () => {
     event.preventDefault();
 
     const authToken = localStorage.getItem('authToken');
-    
-    axios.post(`${API_URL}/projects/${id}/quotations`, {
-      professionalId,
+
+    axios.post(`${API_URL}/projects/${projectId}/quotations`, {
       content,
       price,
+      professionalId
     }, {
       headers: {
         'Authorization': `Bearer ${authToken}`
@@ -40,8 +55,7 @@ const CreateQuotationPage = () => {
     })
     .then(response => {
       console.log(response.data);
-      
-      navigate(`/projects/${id}`); 
+      navigate(`/projects/${projectId}`);
     })
     .catch(error => {
       console.error(error);
@@ -53,14 +67,6 @@ const CreateQuotationPage = () => {
     <div>
       <h2>Create Quotation</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Professional ID:</label>
-          <input
-            type="text"
-            value={professionalId}
-            onChange={handleProfessionalIdChange}
-          />
-        </div>
         <div>
           <label>Content:</label>
           <textarea
@@ -77,6 +83,7 @@ const CreateQuotationPage = () => {
           />
         </div>
         <button type="submit">Create Quotation</button>
+
       </form>
       {errorMessage && <p>{errorMessage}</p>}
     </div>

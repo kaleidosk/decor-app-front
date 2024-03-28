@@ -56,8 +56,8 @@ function EditProjectPage() {
   axios
     .delete(`${API_URL}/api/projects/${projectId}`)
     .then((response) => {
-      console.log(response.data); // Verificar qué datos contiene la respuesta
-      navigate(`/user/${response.data.userId}`); // Ajustar esta línea según la estructura real de la respuesta
+      console.log(response.data); 
+      navigate(`/user/${response.data.userId}`); 
     })
     .catch((error) => {
       console.log(error);

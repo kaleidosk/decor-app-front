@@ -1,42 +1,114 @@
 
-.dropbtn {
-    background-color: #4caf50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
+.ProfilePage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  padding: 20px; 
+}
+
+.welcome-info {
+  display: flex;
+  justify-content: space-between; 
+  width: 100%; 
+  margin-bottom: 20px; 
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content button {
+  width: 100%;
+  text-align: left;
+  padding: 8px 16px;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; 
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.user-details {
+  flex-grow: 1;
+}
+
+
+.projects-container {
+  margin-top: 20px;
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.project-item {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.project-picture {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.project-details {
+  margin-top: 10px;
+}
+
+.project-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.create-project-button {
+  margin-top: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .welcome-info {
+    flex-direction: column; 
+    align-items: flex-start; 
   }
 
-  .dropdown {
-    position: relative;
-    display: inline-block;
+  .user-info {
+    flex-direction: column;
+    align-items: flex-start; 
   }
-  
 
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+  .profile-picture {
+    margin-right: 0; 
+    margin-bottom: 10px; 
   }
-  
-  
-  .dropdown-content button {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
 
-  .dropdown-content button:hover {
-    background-color: #f1f1f1;
+  .options {
+    margin-top: 10px; 
   }
-  
- 
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
+}
