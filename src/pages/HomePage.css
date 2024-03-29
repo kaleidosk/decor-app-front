@@ -1,14 +1,51 @@
 body {
+  margin-top:40px;
   font-family: 'Roboto', sans-serif;
+  background-color: #202020;
 }
 
 
 .project-item {
-  margin-bottom: 20px;
+  display: inline-block;
+  margin-bottom: 60px;
+  margin-top:60px;
 }
 
 .project-item img {
   width: 100%;
   height: auto;
   border-radius: 10px; 
+  border-right:100px;
 }
+
+.project-container {
+  display: inline-flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+  margin-left: 80px;
+  align-items: center; 
+}
+
+.project-container h2 {
+  color: white;
+}
+
+
+
+ h2 {
+  scroll-margin-right: 10px;
+  margin-left: 80px;
+  margin-top: 200px;
+  margin-bottom:60px;
+
+}
+
+h3{
+  color: white;
+}
+
+.project-image {
+  border-radius: 10px; 
+}
+
+

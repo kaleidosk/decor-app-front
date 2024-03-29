@@ -1,0 +1,31 @@
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px; 
+  }
+  
+  form > div {
+    margin-bottom: 20px; 
+  }
+  
+  form label {
+    color: white; 
+  }
+  
+  form input[type="email"],
+  form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px; 
+  }
+  
+  form button {
+    background-color: #202020; 
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  

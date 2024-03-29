@@ -6,7 +6,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #202020;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,17 +24,22 @@ a:hover {
 }
 
 body {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #202020;
+  color: #FFFFFF; 
+  margin-right: 100px;
 }
 
 @media (max-width: 576px) {
   body {
     margin: 0 10px; 
   padding-top: 140px;
+  background-color: #202020;
   }
 }
 
@@ -42,6 +47,7 @@ body {
   body {
     margin: 0 30px;
   padding-top:65px; 
+  background-color: #202020;
   }
 }
 
@@ -49,6 +55,7 @@ body {
   body {
     margin: 0 40px; 
   padding-top:70px;
+  background-color: #202020;
   }
 }
 
@@ -79,7 +86,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #202020;
   }
   a:hover {
     color: #747bff;

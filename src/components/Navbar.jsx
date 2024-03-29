@@ -9,8 +9,10 @@ function Navbar() {
   return (
     <nav className="navbar" id="custom-navbar">
       <Link to="/" id="home-link">
-        <img src="/img/logo.png" alt="Logo" style={{ width: "90%", height: "auto" }} />
+        <img className="logo-link" src="/img/logo.png" alt="Logo" style={{ width: "90%", height: "auto" }} />
       </Link>
+
+
 
       <div className="nav-links">
         <Link to="/" className="nav-link">
@@ -37,7 +39,10 @@ function Navbar() {
           </>
         )}
       </div>
+      <hr className="navbar-divider" />
     </nav>
+
+    
   );
 }
 

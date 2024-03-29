@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import "./LoginPage.css"
 
 const API_URL = import.meta.env.VITE_SERVER_URL
 console.log (API_URL)

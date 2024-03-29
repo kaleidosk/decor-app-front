@@ -20,13 +20,15 @@ function HomePage() {
 
   return (
     <div>
-      {/* <h1>Home Page</h1> */}
+      <h2 className="pending-projects">Pending Projects</h2>
+  
       {projects.map(project => (
-        <div key={project._id}>
+        <div key={project._id} className="project-container">
         <Link to={`/projects/${project._id}`}>
-          <h2>{project.title}</h2>
+          <h3>{project.title}</h3>
           </Link>
-          {project.picture && <img src={project.picture} alt={project.title} />}
+          {project.picture && <img src={project.picture} alt={project.title} className="project-image"/>}
+         
         </div>
       ))}
     </div>
