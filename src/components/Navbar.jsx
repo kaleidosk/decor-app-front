@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <nav className="navbar" id="custom-navbar">
       <Link to="/" id="home-link">
-        <img className="logo-link" src="/img/logo.png" alt="Logo" style={{ width: "90%", height: "auto" }} />
+        <img className="logo-link" src="/img/logo.png" alt="Logo" style={{ maxWidth: "80%", height: "auto" }} />
       </Link>
 
 
